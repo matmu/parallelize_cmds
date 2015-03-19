@@ -5,9 +5,9 @@ Controlled parallelization of arbitrary command line tools.
 
 Introduction
 -----------
-The absence of queuying systems like Torque or Sungrid requires other possibilities to run jobs in parallel and in a controlled environment.
+To increase the degree of capacity utilization and to take full advantage of the underlying hardware it is sometimes necessary to execute several jobs in parallel. One solution could be the use of queying system (e.g. Torque or Sungrid) but on single servers or workstations one often requires a more simple solution.
 
-This tool provides a simple and convenient solution to run several commands on a single server or workstation in parallel and to controle the number of processes that are running at the same time. It uses the Perl ```fork()``` implementation and consists of a single Perl script with no dependencies.
+This tool provides a convenient solution to run several commands on a single server or workstation in parallel and to control the number of processes that are running at the same time. It uses the Perl ```fork()``` implementation and consists of a single Perl script with no dependencies.
 
 
 Demo
