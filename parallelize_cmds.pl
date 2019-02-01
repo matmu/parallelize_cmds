@@ -9,15 +9,36 @@ use warnings;
 # -----------------------------------------------
 
 
-if (!defined $ARGV[0] || !defined $ARGV[1]){
-	print STDERR "Arguments required: n_forks cmd1 cmd2 ...\n";
+if (!defined $ARGV[0] || !defined $ARGV[1] || !defined $ARGV[2]){
+	print STDERR "Arguments required: n_forks is_list [list | cmd1 cmd2 ...]\n";
 	exit(0);
 }
 
-my ($n_forks, @cmds) = @ARGV;
+my ($n_forks, $is_list, @list_or_cmds) = @ARGV;
+
+
+print "Jobs in parallel: ".$n_forks."\n";
+
+
+my @cmds;
+if($is_list eq "1"){
+	my ($list) = @list_or_cmds;
+	die "File '$list' doesn't exist\n" if(!defined $list or !-e $list);
+	
+	open(IN, "<".$list) or die "Cannot open file '$list': $!\n";
+	while(<IN>){
+		chomp($_);
+		if(defined $_ and $_ ne ""){
+			push(@cmds, $_);
+		}
+	}
+	close IN;
+}
+elsif($is_list eq "0"){
+	@cmds = @list_or_cmds;
+}
 
 print "Number of jobs: ".@cmds."\n";
-print "Jobs in parallel: ".$n_forks."\n";
 
 
 my $forkmanager = Parallel::SystemFork -> new();
