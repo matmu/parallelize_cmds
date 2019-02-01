@@ -14,14 +14,14 @@ Example
 -----------
 The script ```parallelize_cmds``` needs at least three parameters. The first parameter is an integer indicating the maximum number of commands to be run at the same time. The second parameter is 0 or 1 depending on whether you pass you commands as 3rd to n parameter (0) or whether you pass a file as 3rd parameter in which each line represents a command (1). A parallalization of 3 jobs (2 at the same time) would be for example:
 
-```./parallelize_cmds 2 0 "echo 'hello'" "echo 'world'" "echo '!'"```
+```./parallelize_cmds.pl 2 0 "echo 'hello'" "echo 'world'" "echo '!'"```
 
 Commands that contain spaces need to be framed with double quotes. If more or longer commands have to be executed, a more convenient could be to save it into a ```.sh``` file. For 5 commands the bash would contain for example:
 
 ```
 #!/bin/bash
 
-./parallelize_cmds 2 0 \
+./parallelize_cmds.pl 2 0 \
 "echo 'hello'" \ 
 "echo 'world'" \
 "echo 'how'" \
@@ -41,4 +41,4 @@ echo 'you'
 
 you would execute the script with
 
-```./parallelize_cmds 2 1 test.sh```
+```./parallelize_cmds.pl 2 1 test.sh```
