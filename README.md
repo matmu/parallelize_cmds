@@ -44,6 +44,6 @@ echo 'are'
 echo 'you'
 ```
 
-the script is exectued with
+the script is executed with
 
 ```./parallelize_cmds.pl 2 1 test.sh```
